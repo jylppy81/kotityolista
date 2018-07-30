@@ -52,6 +52,6 @@ Kuinka monta tapahtumaa haluat näyttää?
 </select>
 <button type="submit">Valitse</button>
 </form>
-<p>Tyhjentääksesi kaiken ja aloittaaksesi alusta, klikkaa <a href="dbinit.php">tästä</a>.</p>
+<p>Tyhjentääksesi kaiken ja aloittaaksesi alusta, klikkaa <a href="initdb.php">tästä</a>.</p>
 </body>
 </html>

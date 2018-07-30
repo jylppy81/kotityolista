@@ -13,7 +13,7 @@ include '../dbconnection.php';
 if(isset($_POST["toiminto"])) { $toiminto = $_POST["toiminto"]; }
 
 if($toiminto == "initialize") {
-  $query = "DROP TABLE henkilo, kotityo, tapahtuma";
+  $query = "DROP TABLE henkilo, kotityo, tapahtuma, maarays";
 
   $conn->query($query);
 
@@ -22,6 +22,7 @@ if($toiminto == "initialize") {
   `nimi` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `admin` tinyint(1) DEFAULT NULL,
+  `passwd` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`henkiloid`)
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
@@ -45,19 +46,32 @@ if($toiminto == "initialize") {
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
   $conn->query($query);
+
+  $query = "CREATE TABLE `maarays` (
+  `maaraysid` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `henkiloid` int(6) unsigned NOT NULL,
+  `kotityoid` int(6) unsigned NOT NULL,
+  `duedate` date DEFAULT NULL,
+  `tehty` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`maaraysid`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+
+  $conn->query($query);
+
 ?>
 
-<h1>Database initialized</h1>
+<h1>Tietokanta alustettu</h1>
 <?php
 } else {
 ?>
-<h1>Database initialization</h1>
-<p>Clicking the button below, will intialize your database. This will erase all existing data and create new datase tables from scratch.</p>
+<h1>Tietokannan alustus</h1>
+<p>Allaolevalla napilla voit alustaa tietokantasi. Tämä tyhjentää kaiken olemassaolevan datan ja luo uudet tyhjät tietokantataulut.</p>
 <form action="initdb.php" method="post">
-<button type="submit" name="toiminto" value="initialize" onclick="return confirm('If you have any existing data, it will be erased. Continue?')">Initialize</button>
+<button type="submit" name="toiminto" value="initialize" onclick="return confirm('Kaikki olemassaoleva data poistetaan. Jatketaanko?')">Alusta</button>
 </form>
 <?php
 }
 ?>
+<a href="index.php">&raquo; Palaa</a>
 </body>
 </html>
