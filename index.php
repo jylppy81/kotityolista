@@ -58,7 +58,7 @@ while($row = $result->fetch_row()) {
 $query = "SELECT kotityoid, nimi, tehty, DATE_ADD(tehty, INTERVAL toistuvuus DAY) AS takaraja FROM kotityo ORDER BY takaraja";
 $result = $conn->query($query);
 while($row = $result->fetch_row()) {
-        echo "<tr><form name='teekotityo' action='teekotityo.php' method='post'><input type='hidden' name='kotityoid' value='" . $row[0] . "'><input name='userid' type='hidden' value='" . $userid . "'><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td><button type='submit' name='toiminto' value='teekotityo'>Merkkaa tehdyksi</button></td></tr>";
+        echo "<tr><form name='teekotityo' action='teekotityo.php' method='post'><input type='hidden' name='kotityoid' value='" . $row[0] . "'><input name='userid' type='hidden' value='" . $userid . "'><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td><button type='submit' name='toiminto' value='teekotityo'>Merkkaa tehdyksi</button></td></form></tr>";
 }
 
 ?>
