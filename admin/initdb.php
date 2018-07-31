@@ -32,6 +32,7 @@ if($toiminto == "initialize") {
   `kotityoid` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `nimi` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `toistuvuus` int(11) DEFAULT NULL,
+  `tehty` date DEFAULT NULL,
   PRIMARY KEY (`kotityoid`)
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
