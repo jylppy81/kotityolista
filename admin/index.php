@@ -34,7 +34,7 @@ include '../dbconnection.php';
 
 $query = "SELECT b.nimi, c.nimi, date_format(a.pvm, '%d.%m.%Y') FROM tapahtuma a, henkilo b, kotityo c 
 	WHERE a.henkiloid = b.henkiloid and a.kotityoid = c.kotityoid 
-	ORDER BY a.tapahtumaid " . $limit;
+	ORDER BY a.pvm DESC " . $limit;
 $result = $conn->query($query);
 while($row = $result->fetch_row()) {
 	echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
